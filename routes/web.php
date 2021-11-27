@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\SisterController;
-use App\Models\Sister;
+use App\Http\Controllers\StudentController;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,13 +20,13 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $sisters = Sister::orderBy('name')->get();
-    return view('/dashboard')->with('sisters', $sisters);
+    $students = Student::orderBy('name')->get();
+    return view('/dashboard')->with('students', $students);
 
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('list', SisterController::class);
+    Route::resource('list', StudentController::class);
 
 });
 require __DIR__.'/auth.php';
